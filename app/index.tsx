@@ -1,3 +1,4 @@
+import { CategoryList } from "@/components/CategoryList";
 import { HighlightGrid } from "@/components/HighlightGrid";
 import { ScrollView, StyleSheet, View } from "react-native";
 
@@ -5,7 +6,8 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <HighlightGrid />
+        <HighlightGrid/>
+        <CategoryList />
       </ScrollView>
     </View>
   );

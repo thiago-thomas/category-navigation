@@ -1,27 +1,31 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 export function HighlightGrid() {
   return (
     <View style={styles.container}>
       <View style={styles.grid}>
         <Pressable style={styles.card}>
+          <Image source={{ uri: 'https://picsum.photos/seed/newarrivals/400/300' }} style={styles.image} />
           <View style={styles.overlay}>
             <Text style={styles.title}>Card 1</Text>
           </View>
         </Pressable>
         <Pressable style={styles.card}>
+          <Image source={{ uri: 'https://picsum.photos/seed/newarrivals/400/300' }} style={styles.image} />
           <View style={styles.overlay}>
-            <Text style={styles.title}>Card 1</Text>
+            <Text style={styles.title}>Card 2</Text>
           </View>
         </Pressable>
         <Pressable style={styles.card}>
+          <Image source={{ uri: 'https://picsum.photos/seed/newarrivals/400/300' }} style={styles.image} />
           <View style={styles.overlay}>
-            <Text style={styles.title}>Card 1</Text>
+            <Text style={styles.title}>Card 3</Text>
           </View>
         </Pressable>
         <Pressable style={styles.card}>
+          <Image source={{ uri: 'https://picsum.photos/seed/newarrivals/400/300' }} style={styles.image} />
           <View style={styles.overlay}>
-            <Text style={styles.title}>Card 1</Text>
+            <Text style={styles.title}>Card 4</Text>
           </View>
         </Pressable>
       </View>
@@ -32,7 +36,8 @@ export function HighlightGrid() {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    paddingVertical: 12
+    paddingVertical: 12,
+    marginBottom: 36,
   },
   grid: {
     flexDirection: 'row',
@@ -43,8 +48,8 @@ const styles = StyleSheet.create({
     width: '48%',
     aspectRatio: 1.2,
     borderRadius: 12,
-    overflow: 'hidden',
-    backgroundColor: 'grey',
+    backgroundColor: '#cccccc',
+    zIndex: 0.5
   },
     overlay: {
     position: 'absolute',
@@ -53,6 +58,10 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     padding: 12,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
   title: {
     color: '#FFFFFF',
