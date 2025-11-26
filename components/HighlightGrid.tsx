@@ -1,42 +1,42 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { HighlightCard } from '@/types';
+import { navigateToRoute } from '@/utils/navigation';
+import React from 'react';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-export function HighlightGrid() {
+interface HighlightGridProps {
+  highlights: HighlightCard[];
+}
+
+export function HighlightGrid({ highlights }: HighlightGridProps) {
+  // Only show grid if exactly 4 cards
+  if (highlights.length !== 4) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.grid}>
-        <Pressable style={styles.card}>
-          <Image source={{ uri: 'https://picsum.photos/seed/newarrivals/400/300' }} style={styles.image} />
-          <View style={styles.overlay}>
-            <Text style={styles.title}>Card 1</Text>
-          </View>
-        </Pressable>
-        <Pressable style={styles.card}>
-          <Image source={{ uri: 'https://picsum.photos/seed/newarrivals/400/300' }} style={styles.image} />
-          <View style={styles.overlay}>
-            <Text style={styles.title}>Card 2</Text>
-          </View>
-        </Pressable>
-        <Pressable style={styles.card}>
-          <Image source={{ uri: 'https://picsum.photos/seed/newarrivals/400/300' }} style={styles.image} />
-          <View style={styles.overlay}>
-            <Text style={styles.title}>Card 3</Text>
-          </View>
-        </Pressable>
-        <Pressable style={styles.card}>
-          <Image source={{ uri: 'https://picsum.photos/seed/newarrivals/400/300' }} style={styles.image} />
-          <View style={styles.overlay}>
-            <Text style={styles.title}>Card 4</Text>
-          </View>
-        </Pressable>
+        {highlights.map((card) => (
+          <Pressable
+            key={card.id}
+            style={styles.card}
+            onPress={() => navigateToRoute(card.route)}
+          >
+            <Image source={{ uri: card.image }} style={styles.image} />
+            <View style={styles.overlay}>
+              <Text style={styles.title}>{card.title}</Text>
+            </View>
+          </Pressable>
+        ))}
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    paddingVertical: 16,
+    paddingVertical: 12,
   },
   grid: {
     flexDirection: 'row',
@@ -47,8 +47,12 @@ const styles = StyleSheet.create({
     width: '48%',
     aspectRatio: 1.2,
     borderRadius: 12,
-    backgroundColor: '#cccccc',
-    zIndex: 0.5
+    overflow: 'hidden',
+    backgroundColor: '#F5F5F5',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
   overlay: {
     position: 'absolute',
@@ -58,13 +62,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     padding: 12,
   },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
   title: {
     color: '#FFFFFF',
     fontSize: 14,
     fontWeight: '600',
   },
-})
+});

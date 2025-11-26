@@ -1,12 +1,21 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { CategoryNode } from '@/types';
+import React from 'react';
+import { Image, Pressable, StyleSheet, Text } from 'react-native';
 
-export function CategoryItem() {
+interface CategoryItemProps {
+  category: CategoryNode;
+  onPress: () => void;
+  showChevron?: boolean;
+}
+
+export function CategoryItem({ category, onPress, showChevron = true }: CategoryItemProps) {
   return (
-    <Pressable style={styles.container}>
-      <Text style={styles.name}>Categoria 01</Text>
-      <Text style={styles.chevron}>›</Text>
+    <Pressable style={styles.container} onPress={onPress}>
+      <Image source={{ uri: category.image }} style={styles.image} />
+      <Text style={styles.name}>{category.name}</Text>
+      {showChevron && <Text style={styles.chevron}>›</Text>}
     </Pressable>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -22,6 +31,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 2,
+  },
+  image: {
+    width: 48,
+    height: 48,
+    borderRadius: 8,
+    backgroundColor: '#F5F5F5',
   },
   name: {
     flex: 1,

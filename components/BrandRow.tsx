@@ -1,13 +1,22 @@
-import { Pressable, StyleSheet, Text, View } from "react-native"
+import { BrandsNode } from '@/types';
+import { navigateToBrands } from '@/utils/navigation';
+import React from 'react';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-export function BrandRow() {
+interface BrandRowProps {
+  brands: BrandsNode;
+}
+
+export function BrandRow({ brands }: BrandRowProps) {
   return (
     <View style={styles.container}>
-      <Pressable style={styles.row}>
-        <Text style={styles.name}>Brands</Text>
+      <Pressable style={styles.row} onPress={navigateToBrands}>
+        <Image source={{ uri: brands.image }} style={styles.image} />
+        <Text style={styles.name}>{brands.name}</Text>
+        <Text style={styles.chevron}>›</Text>
       </Pressable>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -18,31 +27,28 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F8F9FA',
     borderRadius: 12,
-    padding: 32,
+    padding: 16,
     borderWidth: 2,
-    borderColor: '#007aff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
+    borderColor: '#007AFF',
   },
   image: {
     width: 48,
     height: 48,
     borderRadius: 8,
+    backgroundColor: '#E0E0E0',
   },
   name: {
+    flex: 1,
     fontSize: 16,
     fontWeight: '600',
-    color: '#007aff',
+    color: '#007AFF',
+    marginLeft: 16,
   },
   chevron: {
     fontSize: 24,
-    color: '#CCCCCC',
+    color: '#007AFF',
     fontWeight: '300',
   },
-})
+});
