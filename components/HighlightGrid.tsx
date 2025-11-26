@@ -36,8 +36,7 @@ export function HighlightGrid() {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    paddingVertical: 12,
-    marginBottom: 36,
+    paddingVertical: 16,
   },
   grid: {
     flexDirection: 'row',
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#cccccc',
     zIndex: 0.5
   },
-    overlay: {
+  overlay: {
     position: 'absolute',
     bottom: 0,
     left: 0,
